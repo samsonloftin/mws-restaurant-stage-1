@@ -31,3 +31,6 @@ This repository uses [leafletjs](https://leafletjs.com/) with [Mapbox](https://w
 ### Note about ES6
 
 Most of the code in this project has been written to the ES6 JavaScript specification for compatibility with modern web browsers and future-proofing JavaScript code. As much as possible, try to maintain use of ES6 in any additional JavaScript you write.
+
+# Contributing
+The [original repository](https://github.com/udacity/mws-restaurant-stage-1) is starter code for _all_ Udacity students. The original project was built by the team at Udacity for the [Front-End Web Development Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001) course.
