@@ -1,8 +1,9 @@
 let restaurants,
-  neighborhoods,
-  cuisines
-var newMap
-var markers = []
+    neighborhoods,
+    cuisines,
+    mapVisible = true;
+var newMap;
+var markers = [];
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -59,7 +60,6 @@ fetchCuisines = () => {
  */
 fillCuisinesHTML = (cuisines = self.cuisines) => {
   const select = document.getElementById('cuisines-select');
-
   cuisines.forEach(cuisine => {
     const option = document.createElement('option');
     option.innerHTML = cuisine;
@@ -78,7 +78,7 @@ initMap = () => {
         scrollWheelZoom: false
       });
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
-    mapboxToken: '<your MAPBOX API KEY HERE>',
+    mapboxToken: 'pk.eyJ1Ijoic2Ftc29ubG9mdGluIiwiYSI6ImNqd3p5cWtiYjFsamY0OW41bHhmYzA3M28ifQ.GUqU9qMr88rI0cw4Yu6_Cg',
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -100,6 +100,20 @@ initMap = () => {
   });
   updateRestaurants();
 } */
+
+/**
+ * Toggled Map
+ */
+toggleMap = () => {
+  let locateMap = document.getElementById('map');
+  mapVisible = !mapVisible;
+
+  if (mapVisible === false) {
+    locateMap.style.display = "none";
+  } else {
+    locateMap.style.display = "flex";
+  }
+}
 
 /**
  * Update page and map for current restaurants.
@@ -145,9 +159,11 @@ resetRestaurants = (restaurants) => {
  * Create all restaurants HTML and add them to the webpage.
  */
 fillRestaurantsHTML = (restaurants = self.restaurants) => {
+  let i = 1;
   const ul = document.getElementById('restaurants-list');
   restaurants.forEach(restaurant => {
-    ul.append(createRestaurantHTML(restaurant));
+    ul.append(createRestaurantHTML(restaurant, i));
+    i++;
   });
   addMarkersToMap();
 }
@@ -155,7 +171,7 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 /**
  * Create restaurant HTML.
  */
-createRestaurantHTML = (restaurant) => {
+createRestaurantHTML = (restaurant, i) => {
   const li = document.createElement('li');
 
   const image = document.createElement('img');
@@ -163,22 +179,31 @@ createRestaurantHTML = (restaurant) => {
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   li.append(image);
 
+  const description = document.createElement('div');
+  description.className = 'restaurant-description';
+  li.append(description);
+
   const name = document.createElement('h1');
-  name.innerHTML = restaurant.name;
-  li.append(name);
+  name.innerHTML = i + ". " + restaurant.name;
+  description.append(name);
 
   const neighborhood = document.createElement('p');
   neighborhood.innerHTML = restaurant.neighborhood;
-  li.append(neighborhood);
+  description.append(neighborhood);
 
   const address = document.createElement('p');
   address.innerHTML = restaurant.address;
-  li.append(address);
+  description.append(address);
+
+  const type = document.createElement('p');
+  type.className = 'restaurant-type';
+  type.innerHTML = restaurant.cuisine_type;
+  description.append(type);
 
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
-  li.append(more)
+  description.append(more);
 
   return li
 }
