@@ -9,9 +9,9 @@ class DBHelper {
    */
   static get DATABASE_URL() {
     const port = 8000 // Change this to your server port
-    const server = `https://www.samsonloftin.com/restaurants-n-reviews`;
-    const local = `http://localhost:${port}`;
-    return `${server}/data/restaurants.json`;
+    const server = `https://www.samsonloftin.com/restaurants-n-reviews/data/restaurants.json`;
+    const local = `http://localhost:${port}/data/restaurants.json`;
+    return server;
   }
 
   /**
