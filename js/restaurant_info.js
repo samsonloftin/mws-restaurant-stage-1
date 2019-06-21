@@ -1,4 +1,5 @@
-let restaurant;
+let restaurant,
+    mapVisible;
 var newMap;
 
 /**
@@ -149,18 +150,25 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
 createReviewHTML = (review) => {
   const li = document.createElement('li');
   const name = document.createElement('p');
+  name.className = 'review-name';
   name.innerHTML = review.name;
   li.appendChild(name);
 
   const date = document.createElement('p');
+  date.className = 'review-date';
   date.innerHTML = review.date;
   li.appendChild(date);
 
+  let star = String.fromCodePoint(9733);
   const rating = document.createElement('p');
-  rating.innerHTML = `Rating: ${review.rating}`;
+  rating.className = 'review-stars';
+  for (i = 0; i < review.rating; i++) {
+    rating.innerHTML += star;
+  }
   li.appendChild(rating);
 
   const comments = document.createElement('p');
+  comments.className = 'review-comments';
   comments.innerHTML = review.comments;
   li.appendChild(comments);
 
@@ -191,4 +199,24 @@ getParameterByName = (name, url) => {
   if (!results[2])
     return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+/*
+ * Toggled Between Map Photo
+ */
+toggleMapPhoto = () => {
+  let locateMap = document.getElementById('map');
+  let image = document.getElementById('restaurant-img');
+
+  locateMap.style.display = "flex";
+  image.style.display = "none";
+  }
+
+togglePhoto = () => {
+  let locateMap = document.getElementById('map');
+  let image = document.getElementById('restaurant-img');
+
+  locateMap.style.display = "none";
+  image.style.display = "flex";
+
 }

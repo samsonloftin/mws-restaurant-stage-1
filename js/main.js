@@ -101,7 +101,7 @@ initMap = () => {
   updateRestaurants();
 } */
 
-/**
+/*
  * Toggled Map
  */
 toggleMap = () => {
