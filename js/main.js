@@ -88,19 +88,6 @@ initMap = () => {
 
   updateRestaurants();
 }
-/* window.initMap = () => {
-  let loc = {
-    lat: 40.722216,
-    lng: -73.987501
-  };
-  self.map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: loc,
-    scrollwheel: false
-  });
-  updateRestaurants();
-} */
-
 /*
  * Toggled Map
  */
@@ -175,8 +162,10 @@ createRestaurantHTML = (restaurant, i) => {
   const li = document.createElement('li');
 
   const image = document.createElement('img');
+  let alt = restaurant.name;
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.setAttribute('alt', alt);
   li.append(image);
 
   const description = document.createElement('div');
@@ -201,8 +190,10 @@ createRestaurantHTML = (restaurant, i) => {
   description.append(type);
 
   const more = document.createElement('a');
+  let details = restaurant.name + " details";
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
+  more.setAttribute('aria-label', details);
   description.append(more);
 
   return li
@@ -223,14 +214,3 @@ addMarkersToMap = (restaurants = self.restaurants) => {
   });
 
 } 
-/* addMarkersToMap = (restaurants = self.restaurants) => {
-  restaurants.forEach(restaurant => {
-    // Add marker to the map
-    const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);
-    google.maps.event.addListener(marker, 'click', () => {
-      window.location.href = marker.url
-    });
-    self.markers.push(marker);
-  });
-} */
-
