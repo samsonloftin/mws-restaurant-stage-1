@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+@media screen and (min-width: 1200px) {
+/* 
+
+
+  LARGE SCREEN
+
+
+*/
+
+/* 
+
+
+  Filters (index)
+
+
+*/
+
+  .filter-options select {
+    max-width: 200px;
+  }
+  #map-toggle {
+    max-width: 100px;
+  }
+
+/* 
+
+
+  Restaurant Info (restaurant)
+
+
+*/
+
+  #restaurants-list {
+    width: 1200px;
+    align-content: flex-start;
+    align-items: flex-start;
+    margin: auto;
+  }
+  #restaurants-list li {
+    flex-direction: column;
+    width: 25%;
+    margin: 7px 7px;
+    padding: 0 0 5px 0;
+  }
+  #restaurants-list .restaurant-img {
+    margin: 0 0 5px 0;
+    border-radius: 20px 20px 0 0;
+    width: 100%;
+    height: auto;
+  }
+  #restaurants-list .restaurant-description {
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    width: 95%;
+  }
+
+/* 
+
+
+  LARGE SCREEN END
+
+
+*/
+}

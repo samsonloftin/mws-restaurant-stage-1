@@ -3,7 +3,10 @@ let cacheThis = [
   './',
   './index.html',
   './restaurant.html',
-  './css/styles.css',
+  './css/app.css',
+  './css/app_tiny.css',
+  './css/app_med.css',
+  './css/app_large.css',
   './data/restaurants.json',
   './js/main.js',
   './js/dbhelper.js',
@@ -18,6 +21,7 @@ for (i = 1; i < 10; i++) {
   cacheThis.push("./img/" + i + ".jpg");
 }
 
+// Tells the service worker what files to cache
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(staticCacheName).then(function(cache) {
@@ -26,10 +30,12 @@ self.addEventListener('install', function(event) {
   );
 });
 
+// Activates the cache
 self.addEventListener('activate', function(event) {
     event.waitUntil(
       caches.keys().then(function(cacheNames) {
         return Promise.all (
+          // Deletes older cache
           cacheNames.filter(function(cacheName) {
             return cacheName.startsWith('restnreview-') &&
               cacheName != staticCacheName;
@@ -41,6 +47,7 @@ self.addEventListener('activate', function(event) {
     );
 });
 
+// Recovers failed requests
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request).then(function(response) {
