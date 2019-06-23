@@ -216,9 +216,10 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 
 createRestaurantHTML = (restaurant, i) => {
   const li = document.createElement('li');
+  li.setAttribute('tabindex', '0');
 
   const image = document.createElement('img');
-  let alt = restaurant.name;
+  let alt = "Photo of " + restaurant.name + " restaurant";
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.setAttribute('alt', alt);

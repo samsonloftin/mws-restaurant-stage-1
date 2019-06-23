@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -18,7 +18,7 @@
   <!-- Header -->
   <header>
     <nav>
-      <h1><a href="index.html">Recomme</a></h1>
+      <h1><a href="index.html" role="banner">Recomme</a></h1>
     </nav>
   </header>
 
@@ -26,7 +26,7 @@
 
     <!-- Map -->
     <section id="map-container">
-      <div id="map"></div>
+      <div id="map" role="region" aria-label="map" tabindex="-1"></div>
     </section>
 
     <!-- Filters -->
@@ -46,13 +46,13 @@
       </div>
 
       <!-- Restaurant List -->
-      <ul id="restaurants-list"></ul>
+      <ul id="restaurants-list" role="main"></ul>
     </section>
 
   </main>
 
   <!-- Footer -->
-  <footer id="footer">
+  <footer id="footer" role="contentinfo">
       Copyright (c) 2019 <a href="/"><strong>Recomme</strong></a> All Rights Reserved.
   </footer>
 
