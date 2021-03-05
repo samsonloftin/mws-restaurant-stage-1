@@ -10,7 +10,7 @@ I was tasked with transforming a static mobile-unfriendly restaurant reviews sit
 
 ## Demo
 
-[Demo](https://www.samsonloftin.com/restaurants-n-reviews/)
+[Demo](https://samsonloftin.github.io/restaurants-n-reviews/)
 
 ### Contributing
 
