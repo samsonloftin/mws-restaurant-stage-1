@@ -102,11 +102,8 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
   */
 
 initMap = () => {
-  self.newMap = L.map('map', {
-        center: [40.722216, -73.987501],
-        zoom: 12,
-        scrollWheelZoom: false
-      });
+  self.newMap = L.map('map')
+    .setView([40, -74.50], 9, false);
   L.tileLayer('https://api.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
     mapboxToken: 'pk.eyJ1Ijoic2Ftc29ubG9mdGluIiwiYSI6ImNqd3p5cWtiYjFsamY0OW41bHhmYzA3M28ifQ.GUqU9qMr88rI0cw4Yu6_Cg',
       tileSize: 512,
