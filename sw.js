@@ -1,4 +1,4 @@
-let cacheV3 = "restnreview-v2";
+let cacheV1 = "restnreview-v2";
   cacheThis = [
   './',
   './index.html',
@@ -24,7 +24,7 @@ for (i = 1; i < 10; i++) {
 // Tells the service worker what files to cache
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open(cacheV3)
+    caches.open(cacheV1)
           .then(function(cache) {
             return cache.addAll(cacheThis);
           })
@@ -37,7 +37,7 @@ self.addEventListener('fetch', function(event) {
     caches.match(event.request).then(function(response) {
       return response || fetch(event.request).then(function(resp) {
         let respClone = resp.clone();
-        caches.open(cacheV3).then(function(cache) {
+        caches.open(cacheV1).then(function(cache) {
           cache.put(event.request, respClone);
         });
         return resp;
@@ -50,7 +50,7 @@ self.addEventListener('fetch', function(event) {
 
 // Activates the cache
 self.addEventListener('activate', function(event) {
-  let newCache = [cacheV3];
+  let newCache = [cacheV1];
 
     event.waitUntil(
       caches.keys().then(function(cacheNames) {
