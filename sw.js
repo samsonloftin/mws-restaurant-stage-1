@@ -1,4 +1,4 @@
-let cacheV1 = "restnreview-v2";
+let cacheV1 = "restnreview-v3";
   cacheThis = [
   './',
   './index.html',

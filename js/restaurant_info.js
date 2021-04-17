@@ -1,43 +1,43 @@
 let restaurant,
-    mapVisible;
+  mapVisible;
 var newMap;
 
-  /*
+/*
 
 
-    Initialize map as soon as the page is loaded
+  Initialize map as soon as the page is loaded
 
 
-  */
+*/
 
-document.addEventListener('DOMContentLoaded', (event) => {  
+document.addEventListener('DOMContentLoaded', (event) => {
   initMap();
 });
 
-  /*
+/*
 
 
-    Initialize leaflet map
+  Initialize leaflet map
 
 
-  */
+*/
 
 initMap = () => {
   fetchRestaurantFromURL((error, restaurant) => {
     if (error) {
       console.error(error);
-    } else {      
+    } else {
       self.newMap = L.map('map').setView([restaurant.latlng.lat, restaurant.latlng.lng], 16);
 
       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/{z}/{x}/{y}?access_token={mapboxToken}', {
         mapboxToken: 'pk.eyJ1Ijoic2Ftc29ubG9mdGluIiwiYSI6ImNqd3p5cWtiYjFsamY0OW41bHhmYzA3M28ifQ.GUqU9qMr88rI0cw4Yu6_Cg',
-                tileSize: 512,
-      zoomOffset: -1,
+        tileSize: 512,
+        zoomOffset: -1,
         maxZoom: 18,
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
           '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
           'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        id: 'mapbox/streets-v11/tiles'    
+        id: 'mapbox/streets-v11/tiles'
       }).addTo(newMap);
       fillBreadcrumb();
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.newMap);
@@ -45,13 +45,13 @@ initMap = () => {
   });
 }
 
-  /*
+/*
 
 
-    Get current restaurant from page URL
+  Get current restaurant from page URL
 
 
-  */
+*/
 
 fetchRestaurantFromURL = (callback) => {
   if (self.restaurant) {
@@ -75,13 +75,13 @@ fetchRestaurantFromURL = (callback) => {
   }
 }
 
-  /*
+/*
 
 
-    Create restaurant HTML and add it to the webpage
+  Create restaurant HTML and add it to the webpage
 
 
-  */
+*/
 
 fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
@@ -107,13 +107,13 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   fillReviewsHTML();
 }
 
-  /*
+/*
 
 
-    Create restaurant operating hours HTML table and add it to the webpage
+  Create restaurant operating hours HTML table and add it to the webpage
 
 
-  */
+*/
 
 fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
   const hours = document.getElementById('restaurant-hours');
@@ -132,13 +132,13 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
   }
 }
 
-  /*
+/*
 
 
-    Create all reviews HTML and add them to the webpage
+  Create all reviews HTML and add them to the webpage
 
 
-  */
+*/
 
 fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
@@ -160,13 +160,13 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   container.appendChild(ul);
 }
 
-  /*
+/*
 
 
-    Create review HTML and add it to the webpage
+  Create review HTML and add it to the webpage
 
 
-  */
+*/
 
 createReviewHTML = (review) => {
   const li = document.createElement('li');
@@ -196,28 +196,28 @@ createReviewHTML = (review) => {
   return li;
 }
 
-  /*
+/*
 
 
-    Add restaurant name to the breadcrumb navigation menu
+  Add restaurant name to the breadcrumb navigation menu
 
 
-  */
+*/
 
-fillBreadcrumb = (restaurant=self.restaurant) => {
+fillBreadcrumb = (restaurant = self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
   li.innerHTML = restaurant.name;
   breadcrumb.appendChild(li);
 }
 
-  /*
+/*
 
 
-    Get a parameter by name from page URL
+  Get a parameter by name from page URL
 
 
-  */
+*/
 
 getParameterByName = (name, url) => {
   if (!url)
@@ -232,13 +232,13 @@ getParameterByName = (name, url) => {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-  /*
+/*
 
 
-    Toggled Between Map Photo
+  Toggled Between Map Photo
 
 
-  */
+*/
 
 toggleMapPhoto = () => {
   let locateMap = document.getElementById('map');
@@ -246,7 +246,7 @@ toggleMapPhoto = () => {
 
   locateMap.style.display = "flex";
   image.style.display = "none";
-  }
+}
 
 togglePhoto = () => {
   let locateMap = document.getElementById('map');
