@@ -27,7 +27,7 @@ initMap = () => {
     if (error) {
       console.error(error);
     } else {
-      self.newMap = L.map('map').setView([restaurant.latlng.lat, restaurant.latlng.lng], 16);
+      self.newMap = L.map('map').setView([restaurant.latlng.lat, restaurant.latlng.lng], 20);
 
       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/{z}/{x}/{y}?access_token={mapboxToken}', {
         mapboxToken: 'pk.eyJ1Ijoic2Ftc29ubG9mdGluIiwiYSI6ImNqd3p5cWtiYjFsamY0OW41bHhmYzA3M28ifQ.GUqU9qMr88rI0cw4Yu6_Cg',

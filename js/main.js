@@ -98,18 +98,17 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
 
   Initialize leaflet map, called from HTML
 
-
 */
 
 initMap = () => {
   self.newMap = L.map('map')
-    .setView([40, -74.50], 9);
+    .setView([40.7, -74.00], 11);
 
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/{z}/{x}/{y}?access_token={mapboxToken}', {
     mapboxToken: 'pk.eyJ1Ijoic2Ftc29ubG9mdGluIiwiYSI6ImNqd3p5cWtiYjFsamY0OW41bHhmYzA3M28ifQ.GUqU9qMr88rI0cw4Yu6_Cg',
     tileSize: 512,
     zoomOffset: -1,
-    maxZoom: 18,
+    maxZoom: 22,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
       'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -215,10 +214,9 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.href = DBHelper.urlForRestaurant(restaurant);
-  more.setAttribute('aria-label', details);
+  more.setAttribute('tabindex', '0');
 
   const li = document.createElement('li');
-  li.setAttribute('tabindex', '0');
 
   more.append(li);
 
@@ -233,17 +231,23 @@ createRestaurantHTML = (restaurant) => {
   description.className = 'restaurant-description';
   li.append(description);
 
+  let rName = restaurant.name
+  if (rName.length >= 22) {
+    rName = restaurant.name.slice(0, 22)
+    rName = rName + "...";
+  }
+
   const name = document.createElement('h2');
-  name.innerHTML = restaurant.name;
+  name.innerHTML = rName;
   description.append(name);
 
   const neighborhood = document.createElement('p');
-  neighborhood.innerHTML = restaurant.neighborhood;
+  neighborhood.innerHTML = restaurant.cuisine_type + " • " + restaurant.neighborhood;
   description.append(neighborhood);
 
   const type = document.createElement('p');
   type.className = 'restaurant-type';
-  type.innerHTML = restaurant.cuisine_type;
+  type.innerHTML = 'Click to View Details';
   description.append(type);
 
   return more
