@@ -6,9 +6,6 @@
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <link rel="stylesheet" src="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
   <link rel="stylesheet" href="css/app.css" type="text/css">
-  <link rel="stylesheet" href="css/app_tiny.css" type="text/css">
-  <link rel="stylesheet" href="css/app_med.css" type="text/css">
-  <link rel="stylesheet" href="css/app_large.css" type="text/css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
     integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
     crossorigin="" />
@@ -16,49 +13,48 @@
 </head>
 
 <body class="inside">
+  <!-- Header -->
+  <header>
+    <nav>
+      <h1><a href="index.html" role="banner">New York's Best</a></h1>
+      <a href="https://github.com/samsonloftin">Return to Github</a>
+    </nav>
+  </header>
+
+  <div id="titlebg">
+    <h2 id="restaurant-name"></h2>
+    <p id="restaurant-cuisine"></p>
+  </div>
+
   <div id="wrapper">
-    <!-- Header -->
-    <header>
-      <nav>
-        <h1><a href="index.html" role="banner">New York's Best</a></h1>
-        <a href="https://github.com/samsonloftin">Return to Github</a>
-      </nav>
-    </header>
 
-    <main id="maincontent">
-      <h2 id="restaurant-name"></h2>
 
-      <div class="restaurant-maphour">
-        
-        <!-- Map -->
-        <section id="map-container-rest">
-          <div id="map" role="region" aria-label="map"></div>
-          <a href="" id="restaurant-address"></a>
-        </section>
 
-        <div class="restaurant-hours-column">
-          <h3>Hours of Operation</h3>
-          <table id="restaurant-hours"></table>
-        </div>
-      </div>
+    <div class="restaurant-maphour">
 
-      <div class="restaurant-cuisine-column">
-        <h3>Cuisine</h3>
-        <p id="restaurant-cuisine"></p>
-      </div>
-      <section id="reviews-container">
-        <hr>
-        <h2 class="title">Photos</h2>
-        <div id="divider"></div>
-        <img id="restaurant-img" />
+      <!-- Map -->
+      <section id="map-container-rest">
+        <div id="map" role="region" aria-label="map"></div>
+        <a href="" id="restaurant-address"></a>
       </section>
 
-      <!-- Restaurant Reviews -->
-      <section id="reviews-container">
-        <ul id="reviews-list"></ul>
-      </section>
+      <!-- Hours -->
+      <div class="restaurant-right-column">
+      <div class="restaurant-hours-column">
+        <h3>Hours of Operation</h3>
+        <table id="restaurant-hours"></table>
+      </div>
+    </div>
+  </div>
 
-    </main>
+    <!-- Restaurant Reviews -->
+    <section id="reviews-container">
+      <h2 class="title" id="theTop">Photos</h2>
+      <div id="divider"></div>
+      <img id="restaurant-img" />
+
+      <ul id="reviews-list"></ul>
+    </section>
 
   </div>
   <!-- JS Scripts -->
@@ -66,7 +62,6 @@
     integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
     crossorigin=""></script>
   <script type="text/javascript" src="./js/dbhelper.js"></script>
-  <script type="application/javascript" charset="utf-8" src="./js/sw_register.js"></script>
   <script type="text/javascript" src="./js/restaurant_info.js"></script>
 
 </body>

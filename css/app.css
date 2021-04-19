@@ -50,13 +50,36 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   text-transform: uppercase;
   padding: 10px 0 10px 0;
 }
-#wrapper {
+
+#wrapper,
+#titlebg {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   max-width: 800px;
   height: auto;
   margin: auto;
-  overflow: hidden;
   padding: 10px;
   background-color: #fff;
+}
+
+#titlebg {
+  border-radius: 15px 15px 0 0;
+}
+
+#wrapper {
+  border-radius: 0 0 15px 15px;
+}
+
+
+@media screen and (min-width: 1100px) {
+  #wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
+    margin: auto;
+  }
 }
 
 /* 
@@ -66,6 +89,11 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 
 
 */
+header {
+  max-width: 800px;
+  height: auto;
+  margin: auto;
+}
 
 nav {
   display: flex;
@@ -91,20 +119,6 @@ nav h1 a {
   font-size: 13pt;
   font-weight: 600;
   text-transform: uppercase;
-}
-
-@media screen and (min-width: 768px) {
-}
-
-@media screen and (min-width: 1100px) {
-  #wrapper {
-    width: 100%;
-    margin: auto;
-  }
-}
-
-
-@media screen and (max-width: 500px) {
 }
 
 
@@ -190,15 +204,7 @@ nav h1 a {
 
 */
 
-#map {
-  height: 400px;
-  width: 100%;
-  background-color: #ccc;
-  border-radius: 15px;
-  overflow: hidden;
-  z-index: 1;
 
-}
 
 /* 
 
@@ -215,10 +221,9 @@ nav h1 a {
   justify-content: center;
 }
 
-.inside #map-container {
+#map-container {
   position: relative;
   right: 0;
-  margin: 0;
   width: 100%;
   overflow: hidden;
 
@@ -229,23 +234,56 @@ nav h1 a {
   flex-direction: column;
   border:rgba(0, 0, 0, .3) solid 1px;
   position: relative;
-  margin: 0;
+  margin: 5px;
   border-radius: 15px;
   padding: 5px;
   width: 40%;
-  height: 100%;
   overflow: hidden;
-
+  max-height: 250px;
 }
 
-.inside #map {
+#map {
   display: flex;
   background-color: #ccc;
-  height: 250px;
+  height: 100%;
   border-radius: 15px;
   overflow: hidden;
   width: 100%;
+  max-height: 250px;
+  z-index: 1;
 }
+
+
+@media screen and (min-width: 1100px) {
+  #map-container-rest {
+    width: 100%;
+    margin: 0;
+  }
+
+  #map {
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  #map-container-rest {
+    width: 90%;
+    margin: 0;
+  }
+
+  #map {
+    height: 250px;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 40;
+    max-height: 250px;
+    z-index: 1;
+  }
+  
+}
+
+
+
 
 /* 
 
@@ -258,7 +296,7 @@ nav h1 a {
 .filter-options {
   position: absolute;
   z-index: 5;
-  top: 375px;
+  top: 300px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -267,14 +305,6 @@ nav h1 a {
   padding: 0;
   align-items: center;
 }
-
-@media screen and (max-width: 450px) {
-  .filter-options {
-    top: 350px;
-  }
-}
-
-
 
 .filter-options h2 {
   color: white;
@@ -312,13 +342,10 @@ nav h1 a {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-  background-color: #e2e2e2;
+  justify-content: space-evenly;
   list-style: none;
-  padding: 25px 0;
-  border-radius: 15px;
-  text-align: center;
+  padding: 0;
+  width: 100%;
 }
 #restaurants-list li {
   display: flex;
@@ -339,6 +366,7 @@ nav h1 a {
   margin: 7px 7px;
   padding: 0;
 }
+
 #restaurants-list li:hover {
  transform: translateY(-7px);
 }
@@ -408,8 +436,8 @@ nav h1 a {
   font-family: Arial,sans-serif;
   font-size: 2em;
   font-weight: 600;
-  padding: 0 10px 0 10px;
-  margin: 10px 0px;
+  padding: 0;
+  margin: 10px 0 0 0;
   text-align: center;
 }
 #restaurant-img {
@@ -420,9 +448,14 @@ nav h1 a {
   border-radius: 15px;
 }
 
+.restaurant-right-column {
+  display: flex;
+  flex-direction: column;
+}
 
 #restaurant-container, 
-#reviews-container {
+#reviews-container,
+.restaurant-cuisine-column {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -434,19 +467,36 @@ nav h1 a {
   width: 95%;
 }
 
+@media screen and (min-width: 1100px) {
+  #restaurant-container, 
+  #reviews-container {
+    width: 60%;
+  }
+
+  .restaurant-cuisine-column {
+    width: 30%;
+  }
+
+  #reviews-container #theTop {
+    margin: 0;
+  }
+}
+
 #restaurants-list #restaurant-container {
   padding: 10px;
 }
 #restaurant-container {
   margin-top: 0;
 }
-#reviews-container .title {
+
+.title {
   color: rgb(43, 43, 43);
   font-size: 1.5em;
   width: 100%;
   font-weight: 600;
   margin: 50px 0 0 0;
 }
+
 #reviews-list {
   display: flex;
   flex-direction: column;
@@ -528,8 +578,32 @@ nav h1 a {
 
 .restaurant-maphour {
   display:flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  flex-direction: row;
   width: 100%;
+}
+
+@media screen and (max-width: 450px) {
+  .restaurant-maphour {
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .restaurant-maphour {
+    display:flex;
+    order: 2;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 30%;
+  }
+
+  .restaurant-maphour h3 {
+    margin: 20px 0 0 0;
+  }
 }
 
 #restaurant-address {
@@ -542,12 +616,15 @@ nav h1 a {
 #restaurant-cuisine {
   font-size: 1em;
   color: rgb(43, 43, 43);
-  text-align: left;
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 .restaurant-cuisine-column {
   display: flex;
-  
+  flex-direction: column;
+
 }
 
 /*
@@ -564,16 +641,63 @@ h3 {
 .restaurant-hours-column{
   display: flex;
   flex-direction: column;
-}
-
-#restaurant-hours td {
-  display: flex;
-  color: #666;
-  font-size: .9em;
   margin: 0 0 0 20px;
 }
 
-.days {
-  font-weight: 800;
-  font-size: 1.1em;
+
+table {
+  display: flex;
+  width: auto;
+  justify-content: left;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-direction: column;
+  border-spacing: 0;
 }
+
+.days {
+  font-weight: 400;
+  font-size: .9em;
+  padding: 10px 0 0 0;
+  text-align: right;
+}
+
+@media screen and (min-width: 1100px) {
+  .restaurant-hours-column,
+  .restaurant-cuisine-column {
+    margin: 0;
+  }
+
+  table {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .restaurant-hours-column{
+    width: 100%;
+    margin: 20px 0 0 0;
+
+  }
+
+  table {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  tr {
+    margin: 5px;
+  }
+
+}
+
+@media screen and (max-width: 360px) {
+  table {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+}
+
+

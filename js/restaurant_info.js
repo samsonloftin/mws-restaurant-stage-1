@@ -27,19 +27,18 @@ initMap = () => {
     if (error) {
       console.error(error);
     } else {
-      self.newMap = L.map('map').setView([restaurant.latlng.lat, restaurant.latlng.lng], 20);
+      self.newMap = L.map('map').setView([restaurant.latlng.lat, restaurant.latlng.lng], 18);
 
       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/{z}/{x}/{y}?access_token={mapboxToken}', {
         mapboxToken: 'pk.eyJ1Ijoic2Ftc29ubG9mdGluIiwiYSI6ImNqd3p5cWtiYjFsamY0OW41bHhmYzA3M28ifQ.GUqU9qMr88rI0cw4Yu6_Cg',
         tileSize: 512,
         zoomOffset: -1,
-        maxZoom: 18,
+        maxZoom: 19,
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
           '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
           'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         id: 'mapbox/streets-v11/tiles'
       }).addTo(newMap);
-      fillBreadcrumb();
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.newMap);
     }
   });
@@ -89,6 +88,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
+  address.setAttribute("href",("https://www.openstreetmap.org/search?query=" + restaurant.name + "  " + restaurant.address))
 
   const image = document.getElementById('restaurant-img');
   let alt = "Photo of " + restaurant.name + " restaurant";
@@ -97,7 +97,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
   const cuisine = document.getElementById('restaurant-cuisine');
-  cuisine.innerHTML = restaurant.cuisine_type;
+  cuisine.innerHTML = restaurant.cuisine_type + " Cuisine";
 
   // fill operating hours
   if (restaurant.operating_hours) {
@@ -121,13 +121,9 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
     const row = document.createElement('tr');
 
     const day = document.createElement('td');
-    day.innerHTML = key;
+    day.innerHTML = key + " - "+ operatingHours[key];
     day.setAttribute("class", "days")
     row.appendChild(day);
-
-    const time = document.createElement('td');
-    time.innerHTML = operatingHours[key];
-    row.appendChild(time);
 
     hours.appendChild(row);
   }
