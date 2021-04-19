@@ -260,6 +260,10 @@ nav h1 a {
     margin: 0;
   }
 
+  #map-container #map {
+    height: 400px;
+  }
+
   #map {
     height: 250px;
   }
@@ -275,7 +279,7 @@ nav h1 a {
     height: 250px;
     border-radius: 15px;
     overflow: hidden;
-    width: 40;
+    width: 40%;
     max-height: 250px;
     z-index: 1;
   }
@@ -296,7 +300,7 @@ nav h1 a {
 .filter-options {
   position: absolute;
   z-index: 5;
-  top: 300px;
+  top: 170px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
